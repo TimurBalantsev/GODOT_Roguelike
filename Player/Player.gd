@@ -3,9 +3,12 @@ class_name Player
 @export
 var speed = 300.0
 @onready
-var animation_node = get_node("AnimatedSprite2D")
+var animation_node:AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready
-var sword_node = get_node("Sword")
+var sword_node:Node2D = get_node("Sword")
+
+@onready
+var sword_animation:AnimationPlayer = sword_node.get_node('SwordAnimationPlayer')
 
 func _ready():
 	animation_node.play('idle')
@@ -29,7 +32,10 @@ func _process(delta):
 		animation_node.flip_h = true
 
 	sword_node.rotation = mouse_direction.angle()
+	
 	if sword_node.scale.y == 1 and mouse_direction.x <0:
 		sword_node.scale.y = -1
 	elif sword_node.scale.y == -1 and mouse_direction.x > 0:
 		sword_node.scale.y = 1
+	if Input.is_action_just_pressed("attack") and not sword_animation.is_playing():
+		sword_animation.play("attack")
