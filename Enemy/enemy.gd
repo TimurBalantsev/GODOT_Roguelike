@@ -46,6 +46,7 @@ func makepath():
 	navigation_agent.target_position = movement_target.global_position
 	
 func take_damage(damage):
+	sprite.modulate = Color(1,0,0)
 	hp -= damage
 	if	hp <= 0:
 		queue_free()

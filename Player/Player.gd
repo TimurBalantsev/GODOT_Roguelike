@@ -34,6 +34,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
+	
 	var mouse_direction: Vector2 = (get_global_mouse_position() - position)
 	
 	if	mouse_direction.x > 0 and animation_node.flip_h:
@@ -53,10 +54,9 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemy"):
+		print("damage taken" + str(hp))
 		hp -= body.damage
-		if	hp <=0:
-			queue_free()
-		print(hp)
+
 
 
 func _on_sword_area_2d_body_entered(body):
