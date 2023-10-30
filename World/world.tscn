@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dxvpex4enpbqq" path="res://Art/v1.1 dungeon crawler 16X16 pixel pack/full tilemap.png" id="2_e7eu0"]
 [ext_resource type="PackedScene" uid="uid://ydo0r20ixiqg" path="res://Enemy/enemy.tscn" id="4_8tpka"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_dj2ad"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1tspy"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
@@ -48,17 +48,19 @@ texture = ExtResource("2_e7eu0")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 4:1/0 = 0
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
 5:1/0 = 0
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
-5:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dj2ad")
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
 6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:1/0/physics_layer_0/angular_velocity = 0.0
@@ -77,15 +79,19 @@ texture = ExtResource("2_e7eu0")
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 4:2/0 = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 5:2/0 = 0
 5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 6:2/0 = 0
 6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:2/0/physics_layer_0/angular_velocity = 0.0
@@ -101,15 +107,19 @@ texture = ExtResource("2_e7eu0")
 2:3/0 = 0
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 3:3/0 = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 4:3/0 = 0
 4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 5:3/0 = 0
 5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:3/0/physics_layer_0/angular_velocity = 0.0
+5:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1tspy")
 6:3/0 = 0
 6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:3/0/physics_layer_0/angular_velocity = 0.0
@@ -186,6 +196,7 @@ sources/0 = SubResource("TileSetAtlasSource_tpme8")
 script = ExtResource("1_t2ul4")
 
 [node name="Player" parent="." instance=ExtResource("1_xonjv")]
+max_hp = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
@@ -197,4 +208,6 @@ format = 2
 layer_0/z_index = -1
 layer_0/tile_data = PackedInt32Array(65531, 262144, 2, 65532, 131072, 1, 65533, 131072, 1, 65534, 131072, 1, 65535, 131072, 1, 0, 131072, 1, 1, 327680, 1, 2, 262144, 2, 3, 131072, 1, 4, 131072, 3, 5, 131072, 1, 6, 131072, 1, 65542, 262144, 2, 65541, 131072, 1, 65540, 131072, 1, 65539, 131072, 1, 65538, 131072, 1, 65537, 131072, 2, 65536, 131072, 1, 131071, 131072, 2, 131070, 131072, 1, 131069, 131072, 3, 131068, 262144, 2, 131067, 131072, 2, 196603, 131072, 1, 196604, 131072, 1, 196605, 131072, 3, 196606, 131072, 1, 196607, 131072, 1, 131072, 131072, 1, 131073, 262144, 2, 131074, 131072, 3, 131075, 262144, 2, 131076, 131072, 1, 131077, 131072, 2, 131078, 131072, 1, -65530, 131072, 1, -131066, 262144, 2, -131067, 131072, 3, -196603, 131072, 1, -196604, 131072, 1, -196605, 131072, 3, -196606, 131072, 1, -196607, 131072, 1, -196608, 131072, 3, -131073, 131072, 1, -131074, 262144, 2, -131075, 131072, 1, -65539, 131072, 1, -65540, 131072, 1, -65541, 131072, 2, -4, 131072, 1, -3, 131072, 3, -65538, 131072, 1, -65537, 131072, 1, -5, 131072, 1, -2, 131072, 2, -1, 131072, 1, -65536, 262144, 2, -65535, 262144, 2, -65534, 327680, 1, -65533, 131072, 2, -65532, 131072, 1, -65531, 131072, 3, -131068, 131072, 1, -131069, 131072, 2, -131070, 262144, 2, -131071, 131072, 1, -131072, 131072, 2, -131076, 131072, 2, -131077, 131072, 1, -196602, 131072, 1, -131078, 131072, 2, -65542, 262144, 2, -6, 131072, 2, 65530, 131072, 2, 131066, 131072, 2, 196602, 262144, 2, 196601, 131072, 1, 196600, 131072, 1, 131064, 262144, 2, 65528, 131072, 2, 65529, 262144, 2, -7, 262144, 2, -65543, 262144, 2, -131079, 262144, 2, -131080, 196608, 3, -65544, 196608, 3, -65545, 131072, 1, -8, 131072, 2, 131065, 131072, 2, -9, 196608, 3, 65527, 196608, 3, 131063, 262144, 2, -131081, 196608, 3, 196599, 262144, 2)
 
-[node name="Enemy" parent="." instance=ExtResource("4_8tpka")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("movement_target") instance=ExtResource("4_8tpka")]
+position = Vector2(147, -24)
+movement_target = NodePath("../Player")

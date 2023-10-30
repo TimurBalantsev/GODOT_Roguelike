@@ -2,6 +2,15 @@ extends CharacterBody2D
 class_name Player
 @export
 var speed = 300.0
+
+@export
+var max_hp:int = 10
+
+var hp:int
+
+@export
+var sword_damage:int = 1
+
 @onready
 var animation_node:AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready
@@ -11,6 +20,7 @@ var sword_node:Node2D = get_node("Sword")
 var sword_animation:AnimationPlayer = sword_node.get_node('SwordAnimationPlayer')
 
 func _ready():
+	hp = max_hp
 	animation_node.play('idle')
 
 func _physics_process(delta):
@@ -39,3 +49,16 @@ func _process(delta):
 		sword_node.scale.y = 1
 	if Input.is_action_just_pressed("attack") and not sword_animation.is_playing():
 		sword_animation.play("attack")
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("enemy"):
+		hp -= body.damage
+		if	hp <=0:
+			queue_free()
+		print(hp)
+
+
+func _on_sword_area_2d_body_entered(body):
+	if	body.is_in_group("enemy"):
+		body.take_damage(sword_damage)

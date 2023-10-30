@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ydo0r20ixiqg"]
+[gd_scene load_steps=10 format=3 uid="uid://ydo0r20ixiqg"]
 
 [ext_resource type="Texture2D" uid="uid://c1umly512x848" path="res://Art/v1.1 dungeon crawler 16X16 pixel pack/enemies/flying creature/fly_anim_f0.png" id="1_lukfj"]
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_wbciy"]
 [ext_resource type="Texture2D" uid="uid://duk5xwjqpk0ks" path="res://Art/v1.1 dungeon crawler 16X16 pixel pack/enemies/flying creature/fly_anim_f1.png" id="2_1i8vf"]
+[ext_resource type="Script" path="res://Enemy/enemy_colision.gd" id="2_5ngbu"]
 [ext_resource type="Texture2D" uid="uid://ce1fbfegn17d0" path="res://Art/v1.1 dungeon crawler 16X16 pixel pack/enemies/flying creature/fly_anim_f2.png" id="3_0s70h"]
 [ext_resource type="Texture2D" uid="uid://dlxfsk8333045" path="res://Art/v1.1 dungeon crawler 16X16 pixel pack/enemies/flying creature/fly_anim_f3.png" id="4_kh66w"]
 
@@ -29,11 +30,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1hc4"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "sprite") groups=["enemy"]]
 script = ExtResource("1_wbciy")
+navigation_agent = NodePath("NavigationAgent2D")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6vm7g")
+script = ExtResource("2_5ngbu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k1tn7")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+shape = SubResource("CircleShape2D_c1hc4")
+one_way_collision_margin = 0.0
+debug_color = Color(0.886275, 0.313726, 0.286275, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_shape_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
